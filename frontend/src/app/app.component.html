@@ -1,0 +1,13 @@
+<div class="topnav" *ngIf="isUserLoggedIn">
+  <a [routerLink]="['/dashboard']" [routerLinkActive]="'active'">Home</a>
+  <a [routerLink]="['./categories']" [routerLinkActive]="'active'">Category</a>
+  <a [routerLink]="['./reminders']" [routerLinkActive]="'active'">Reminder</a>
+  <a [routerLink]="['./notes']" [routerLinkActive]="'active'">Note</a>
+  <a [routerLink]="['./logout']" [routerLinkActive]="'active'" (click)="logoff()">Logout</a>
+</div>
+<div class="main-container">
+  <router-outlet></router-outlet>
+</div>
+<footer class="pt-3 bg-dark text-white-50 footer">
+  <p>&copy; 2019 keep notes<p>
+</footer>

@@ -1,0 +1,45 @@
+<div class="container  col-4 p-5">
+  <div class="card">
+    <div class="card-header">Login</div>
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="signIn()" class="form-horizontal">
+        <div class="row">
+          <div class="col-md-3 field-label-responsive">
+            <label for="userid">Username</label>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <input type="text" formControlName="UserId" class="form-control" autofocus
+                  [ngClass]="{ 'is-invalid': submitted && loginForm.controls.UserId.errors }" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 field-label-responsive">
+            <label for="password">Password</label>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group has-danger">
+              <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <input type="password" formControlName="Password" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && loginForm.controls.Password.errors }" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 text-right">
+            <button type="button" (click)="router.navigate(['/registration'])" class="btn btn-secondary">
+              <i class="fa fa-user-plus"></i>Sign Up</button>
+          </div>
+          <div class="col-3 text-right">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i>Login</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+  </div>
+</div>

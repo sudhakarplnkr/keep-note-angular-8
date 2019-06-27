@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+html, body {
+  height: 100%;
+}
+
+.main-container {
+  height: 100%;
+  margin-bottom: 10%;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+
+.topnav a:hover, .topnav a.active {
+  background-color: #ddd;
+  color: black;
+}
+
+.is-invalid .multiselect-dropdown {
+  border: 1px solid red !important;
+}

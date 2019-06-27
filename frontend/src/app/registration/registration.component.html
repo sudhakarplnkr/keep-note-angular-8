@@ -1,0 +1,77 @@
+<div class="container col-4 p-5">
+    <div class="card">
+        <div class="card-header">Register New User</div>
+        <div class="card-body">
+            <form [formGroup]="registrationForm" (ngSubmit)="createUser()" class="form-horizontal" role="form">
+                <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="userid">Username</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <input type="text" formControlName="UserId" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && registrationForm.controls.UserId.errors }"
+                                    autofocus />
+                                <div *ngIf="submitted && registrationForm.controls.UserId.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="registrationForm.controls.UserId.errors.email">Enter valid email address
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-danger">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <input type="password" formControlName="Password" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && registrationForm.controls.Password.errors }" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-danger">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <input type="text" formControlName="Name" name="name" class="form-control" id="name"
+                                    [ngClass]="{ 'is-invalid': submitted && registrationForm.controls.Name.errors }" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 field-label-responsive">
+                        <label for="contact">Contact</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group has-danger">
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <input type="text" formControlName="Contact" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && registrationForm.controls.Contact.errors }" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 text-right">
+                        <button type="button" (click)="cancel()" class="btn btn-danger"><i class="fa fa-remove"></i>
+                            Cancel</button>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i>
+                            Register</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    </div>

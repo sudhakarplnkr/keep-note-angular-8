@@ -1,0 +1,42 @@
+<div class="container">
+        <div class="row m-2">
+            <div class="col-10">
+                <h2>Reminders</h2>
+            </div>
+            <div class="col-2 text-right">
+                <input type="button" class="btn btn-success" value="Add Reminder" (click)="create()" />
+            </div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Created By</th>
+                    <th>Date</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reminder of reminders">
+                    <td>{{reminder.name}}</td>
+                    <td>{{reminder.description}}</td>
+                    <td>{{reminder.type}}</td>
+                    <td>{{reminder.createdBy}}</td>
+                    <td>{{reminder.creationDate | date}}</td>
+                    <td>
+                        <button class='btn btn-sm' (click)="create(reminder)">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class='btn btn-sm'>
+                            <i class="fa fa-remove" (click)="delete(reminder.id)"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

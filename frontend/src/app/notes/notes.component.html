@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row m-2">
+        <div class="col-10">
+            <h2>Notes</h2>
+        </div>
+        <div class="col-2 text-right">
+            <input type="button" class="btn btn-success" value="Add Note" (click)="create()" />
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Category</th>
+                <th>Reminders</th>
+                <th>Created By</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let note of notes">
+                <td>{{note.title}}</td>
+                <td>{{note.content}}</td>
+                <td>{{note.category.name}}</td>
+                <td>
+                    <dl>
+                        <dd *ngFor="let reminder of note.reminders; let index = index">{{index+1}}. {{reminder.name}}
+                        </dd>
+                    </dl>
+                </td>
+                <td>{{note.createdBy}}</td>
+                <td>{{note.creationDate | date}}</td>
+                <td>
+                    <button class='btn btn-sm' (click)="create(note)">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                </td>
+                <td>
+                    <button class='btn btn-sm' (click)="delete(note.id)">
+                        <i class="fa fa-remove"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
