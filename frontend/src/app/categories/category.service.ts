@@ -14,7 +14,7 @@ export class CategoryService {
     private authService: AuthService) { }
 
   get(): Observable<any> {
-    const { userId } = this.authService.currentUserValue;
+    const { userId } = this.authService.currentUserValue;    
     return this.http.get(`${ServiceUrl.CategoryUrl}/categories/${userId}`);
   }
 

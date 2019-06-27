@@ -16,7 +16,7 @@ export class CategoriesComponent implements OnInit {
     public modalService: NgbModal,
     private categoryService: CategoryService,
     private ngbModalConfig: NgbModalConfig) {
-      this.ngbModalConfig.backdrop = 'static';
+    this.ngbModalConfig.backdrop = 'static';
   }
 
   ngOnInit() {
@@ -41,8 +41,8 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  delete(categoryId: number){
-    this.categoryService.delete(categoryId).subscribe(()=>{
+  delete(categoryId: number) {
+    this.categoryService.delete(categoryId).subscribe(() => {
       this.get();
     });
   }

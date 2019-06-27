@@ -18,7 +18,7 @@ import { AuthService } from '../services/auth.service';
   entryComponents: [
     CategoryCreateComponent
   ],
-  providers:[
+  providers: [
     CategoryService,
     AuthService
   ]

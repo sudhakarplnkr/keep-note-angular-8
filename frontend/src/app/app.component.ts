@@ -14,8 +14,6 @@ export class AppComponent {
     this.authService.currentUser.subscribe((userClain: UserClaims) => this.isUserLoggedIn = !!userClain);
   }
 
-  title = 'GoogleKeepUI';
-
   logoff() {
     localStorage.removeItem('currentUser');
     this.authService.currentUserSubject.next(null);

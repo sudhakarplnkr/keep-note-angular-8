@@ -4,7 +4,10 @@
             <h2>Notes</h2>
         </div>
         <div class="col-2 text-right">
-            <input type="button" class="btn btn-success" value="Add Note" (click)="create()" />
+            <button type="button" class="btn btn-success" (click)="create()">
+                <i class="fa fa-plus"></i>
+                Add Note
+            </button>
         </div>
     </div>
     <table class="table table-striped">

@@ -6,7 +6,8 @@
   <a [routerLink]="['./logout']" [routerLinkActive]="'active'" (click)="logoff()">Logout</a>
 </div>
 <div class="main-container">
-  <router-outlet></router-outlet>
+  <app-spinner></app-spinner>
+  <router-outlet></router-outlet>  
 </div>
 <footer class="pt-3 bg-dark text-white-50 footer">
   <p>&copy; 2019 keep notes<p>

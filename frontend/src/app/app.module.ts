@@ -15,10 +15,12 @@ import { RemindersModule } from './reminders/reminders.module';
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { AuthService } from './services/auth.service';
   providers: [
     NgbActiveModal,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    AuthService
+    AuthService,
+    AuthInterceptor
   ],
   bootstrap: [AppComponent],
   entryComponents: []
