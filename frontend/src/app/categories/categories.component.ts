@@ -3,6 +3,7 @@ import { Category } from './category';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryCreateComponent } from './category-create.component';
 import { CategoryService } from './category.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-categories',
@@ -15,7 +16,8 @@ export class CategoriesComponent implements OnInit {
   constructor(
     public modalService: NgbModal,
     private categoryService: CategoryService,
-    private ngbModalConfig: NgbModalConfig) {
+    private ngbModalConfig: NgbModalConfig,
+    private toastrService: ToastrService) {
     this.ngbModalConfig.backdrop = 'static';
   }
 
@@ -28,6 +30,7 @@ export class CategoriesComponent implements OnInit {
     modal.componentInstance.category = category;
     modal.result.then((result) => {
       if (result === 'saved') {
+        this.toastrService.success('Saved successfully.');
         this.get();
       }
       modal.dismiss();

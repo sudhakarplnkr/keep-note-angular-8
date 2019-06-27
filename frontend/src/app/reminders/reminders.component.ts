@@ -3,6 +3,7 @@ import { Reminder } from './reminder';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ReminderCreateComponent } from './reminder-create.component';
 import { ReminderService } from './reminder.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reminders',
@@ -15,8 +16,9 @@ export class RemindersComponent implements OnInit {
   constructor(
     public modalService: NgbModal,
     private reminderService: ReminderService,
-    private ngbModalConfig: NgbModalConfig) {
-      this.ngbModalConfig.backdrop = 'static';
+    private ngbModalConfig: NgbModalConfig,
+    private toastrService: ToastrService) {
+    this.ngbModalConfig.backdrop = 'static';
   }
 
   ngOnInit() {
@@ -28,6 +30,7 @@ export class RemindersComponent implements OnInit {
     modal.componentInstance.reminder = reminder;
     modal.result.then((result) => {
       if (result === 'saved') {
+        this.toastrService.success('Saved successfully.');
         this.get();
       }
       modal.dismiss();
@@ -41,8 +44,8 @@ export class RemindersComponent implements OnInit {
     });
   }
 
-  delete(reminderId: number){
-    this.reminderService.delete(reminderId).subscribe(()=>{
+  delete(reminderId: number) {
+    this.reminderService.delete(reminderId).subscribe(() => {
       this.get();
     });
   }

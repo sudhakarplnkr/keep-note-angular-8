@@ -3,6 +3,7 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Note } from './note';
 import { NotesCreateComponent } from './notes-create.component';
 import { NoteService } from './note.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-notes',
@@ -11,8 +12,11 @@ import { NoteService } from './note.service';
 })
 export class NotesComponent implements OnInit {
   notes: Note[];
-  constructor(private modalService: NgbModal, private noteService: NoteService, private ngbModalConfig: NgbModalConfig) {
-      this.ngbModalConfig.backdrop = 'static';
+  constructor(private modalService: NgbModal,
+    private noteService: NoteService,
+    private ngbModalConfig: NgbModalConfig,
+    private toastrService: ToastrService) {
+    this.ngbModalConfig.backdrop = 'static';
   }
 
   ngOnInit() {
@@ -24,6 +28,7 @@ export class NotesComponent implements OnInit {
     modal.componentInstance.note = note;
     modal.result.then((result) => {
       if (result === 'saved') {
+        this.toastrService.success('Saved successfully.');
         this.get();
       }
       modal.dismiss();

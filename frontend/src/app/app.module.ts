@@ -16,6 +16,8 @@ import { AuthInterceptor } from './services/auth-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     CategoriesModule,
     NotesModule,
     RemindersModule,
-    NgbModule.forRoot()
+    BrowserAnimationsModule,
+    NgbModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [
     NgbActiveModal,
