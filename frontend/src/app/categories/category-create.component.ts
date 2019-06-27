@@ -14,7 +14,7 @@ export class CategoryCreateComponent implements OnInit {
     submitted: boolean = false;
     categoryForm: FormGroup;
 
-    @Input() category: Category;
+    @Input() data: Category;
 
     constructor(private formBuilder: FormBuilder, private categoryService: CategoryService, public activeModal: NgbActiveModal) { }
 
@@ -25,7 +25,7 @@ export class CategoryCreateComponent implements OnInit {
         });
         this.setDefault();
         this.categoryForm.valueChanges.subscribe(category => {
-            this.category = { ...this.category, ...category };
+            this.data = { ...this.data, ...category };
         });
     }
 
@@ -34,14 +34,14 @@ export class CategoryCreateComponent implements OnInit {
         if (this.categoryForm.invalid) {
             return;
         }
-        this.categoryService.save(this.category).subscribe(() => {
+        this.categoryService.save(this.data).subscribe(() => {
             this.activeModal.close('saved');
         }, (error: any) => { this.message = error.error; });
     }
 
     private setDefault(): void {
-        if (this.category) {
-            const { name, description } = this.category;
+        if (this.data) {
+            const { name, description } = this.data;
             this.categoryForm.setValue({ name, description });
         }
     }

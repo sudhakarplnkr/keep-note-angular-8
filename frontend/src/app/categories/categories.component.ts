@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from './category';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryCreateComponent } from './category-create.component';
 import { CategoryService } from './category.service';
-import { ToastrService } from 'ngx-toastr';
+import { ModalService } from '../services/modal.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-categories',
@@ -14,11 +14,10 @@ export class CategoriesComponent implements OnInit {
 
   categories: Category[];
   constructor(
-    public modalService: NgbModal,
     private categoryService: CategoryService,
-    private ngbModalConfig: NgbModalConfig,
-    private toastrService: ToastrService) {
-    this.ngbModalConfig.backdrop = 'static';
+    private modalService: ModalService,
+    private title: Title) {
+    this.title.setTitle('Keep Note - Category');
   }
 
   ngOnInit() {
@@ -26,16 +25,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   create(category?: Category) {
-    const modal = this.modalService.open(CategoryCreateComponent);
-    modal.componentInstance.category = category;
-    modal.result.then((result) => {
-      if (result === 'saved') {
-        this.toastrService.success('Saved successfully.');
-        this.get();
-      }
-      modal.dismiss();
-    }, (reason) => {
-    });
+    this.modalService.openModalDialog(CategoryCreateComponent, category, this.get());
   }
 
   get() {

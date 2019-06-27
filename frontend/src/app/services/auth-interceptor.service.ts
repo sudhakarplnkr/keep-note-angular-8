@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map, delay } from 'rxjs/operators';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { UserClaims } from '../registration/User';
 import { AuthService } from './auth.service';
 
@@ -21,14 +21,25 @@ export class AuthInterceptor implements HttpInterceptor {
                 }
             });
         }
-        this.requestCount++;
-        this.authService.showSpinnerSubject.next(this.requestCount);
+        this.incrementRequest();
         return next.handle(request).pipe(map((event: HttpEvent<any>) => {
             if (event instanceof HttpResponse) {
-                this.requestCount--;
-                this.authService.showSpinnerSubject.next(this.requestCount);
+                this.decrementRequest();
             }
             return event;
+        }), catchError((error: HttpErrorResponse) => {
+            this.decrementRequest();
+            return throwError(error);
         }));
+    }
+
+    private incrementRequest(): void {
+        this.requestCount++;
+        this.authService.showSpinnerSubject.next(this.requestCount);
+    }
+
+    private decrementRequest(): void {
+        this.requestCount--;
+        this.authService.showSpinnerSubject.next(this.requestCount);
     }
 }

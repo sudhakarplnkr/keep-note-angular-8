@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Login } from '../registration/User';
 import { AuthService } from '../services/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -23,10 +24,12 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private title: Title) {
     if (this.authService.currentUserValue) {
       this.router.navigate(['/']);
     }
+    this.title.setTitle('Keep Notes - Login');
   }
 
   ngOnInit() {
@@ -34,7 +37,6 @@ export class LoginComponent implements OnInit {
       UserId: [null, Validators.required],
       Password: [null, Validators.required]
     });
-    console.log(this.route.snapshot.queryParams['returnUrl']);
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
     this.loginForm.valueChanges.subscribe((login: Login) => this.login = login);
@@ -52,7 +54,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
       }
     }, error => {
-      console.log(error);
       this.error = error.error;
     });
   }

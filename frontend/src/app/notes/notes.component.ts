@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Note } from './note';
-import { NotesCreateComponent } from './notes-create.component';
 import { NoteService } from './note.service';
-import { ToastrService } from 'ngx-toastr';
+import { ModalService } from '../services/modal.service';
+import { NotesCreateComponent } from './notes-create.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-notes',
@@ -12,11 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NotesComponent implements OnInit {
   notes: Note[];
-  constructor(private modalService: NgbModal,
+  constructor(
+    private modalService: ModalService,
     private noteService: NoteService,
-    private ngbModalConfig: NgbModalConfig,
-    private toastrService: ToastrService) {
-    this.ngbModalConfig.backdrop = 'static';
+    private title: Title) {
+    this.title.setTitle('Keep Note - Reminder');
   }
 
   ngOnInit() {
@@ -24,16 +24,7 @@ export class NotesComponent implements OnInit {
   }
 
   create(note?: Note) {
-    const modal = this.modalService.open(NotesCreateComponent);
-    modal.componentInstance.note = note;
-    modal.result.then((result) => {
-      if (result === 'saved') {
-        this.toastrService.success('Saved successfully.');
-        this.get();
-      }
-      modal.dismiss();
-    }, (reason) => {
-    });
+    this.modalService.openModalDialog(NotesCreateComponent, note, this.get());
   }
 
   get() {

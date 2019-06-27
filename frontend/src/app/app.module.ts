@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,7 +14,6 @@ import { NotesModule } from './notes/notes.module';
 import { RemindersModule } from './reminders/reminders.module';
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthService } from './services/auth.service';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -40,9 +39,9 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   providers: [
     NgbActiveModal,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    AuthService,
-    AuthInterceptor
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },    
+    AuthInterceptor,
+    Title
   ],
   bootstrap: [AppComponent],
   entryComponents: []

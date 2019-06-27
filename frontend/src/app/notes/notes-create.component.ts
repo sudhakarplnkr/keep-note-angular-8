@@ -21,7 +21,7 @@ export class NotesCreateComponent implements OnInit {
     reminders: Reminder[];
     remindersSettings: any;
 
-    @Input() note: Note;
+    @Input() data: Note;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -39,7 +39,7 @@ export class NotesCreateComponent implements OnInit {
         });
         this.setDefault();
         this.noteForm.valueChanges.subscribe(note => {
-            this.note = { ...this.note, ...note };
+            this.data = { ...this.data, ...note };
         });
     }
 
@@ -48,14 +48,14 @@ export class NotesCreateComponent implements OnInit {
         if (this.noteForm.invalid) {
             return;
         }
-        this.noteService.save(this.note).subscribe(() => {
+        this.noteService.save(this.data).subscribe(() => {
             this.activeModal.close('saved');
         }, (error: any) => { this.message = error.error; });
     }
 
     private setDefault(): void {
-        if (this.note) {
-            const { title, content, reminders } = this.note;
+        if (this.data) {
+            const { title, content, reminders } = this.data;
             this.noteForm.patchValue({ title, content, reminders });
         }
         this.loadCategories();
@@ -73,18 +73,16 @@ export class NotesCreateComponent implements OnInit {
 
     private loadCategories() {
         this.categoryService.get().subscribe((categories: Category[]) => {
-            if (this.note) {
-                const { category } = this.note;
+            this.categories = categories;
+            if (this.data) {
+                const { category } = this.data;
                 const selectCategory = categories.find(u => u.id === category.id);
                 this.noteForm.patchValue({ category: selectCategory });
             }
-            this.categories = categories;
         });
     }
 
     private loadReminders() {
-        this.reminderService.get().subscribe((reminders: Reminder[]) => {
-            this.reminders = reminders;
-        });
+        this.reminderService.get().subscribe((reminders: Reminder[]) => this.reminders = reminders);
     }
 }

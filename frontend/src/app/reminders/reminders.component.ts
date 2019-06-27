@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Reminder } from './reminder';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ReminderCreateComponent } from './reminder-create.component';
 import { ReminderService } from './reminder.service';
-import { ToastrService } from 'ngx-toastr';
+import { ModalService } from '../services/modal.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-reminders',
@@ -14,11 +14,10 @@ export class RemindersComponent implements OnInit {
 
   reminders: Reminder[];
   constructor(
-    public modalService: NgbModal,
+    public modalService: ModalService,
     private reminderService: ReminderService,
-    private ngbModalConfig: NgbModalConfig,
-    private toastrService: ToastrService) {
-    this.ngbModalConfig.backdrop = 'static';
+    private title: Title) {
+    this.title.setTitle('Keep Note - Reminder');
   }
 
   ngOnInit() {
@@ -26,16 +25,7 @@ export class RemindersComponent implements OnInit {
   }
 
   create(reminder?: Reminder) {
-    const modal = this.modalService.open(ReminderCreateComponent);
-    modal.componentInstance.reminder = reminder;
-    modal.result.then((result) => {
-      if (result === 'saved') {
-        this.toastrService.success('Saved successfully.');
-        this.get();
-      }
-      modal.dismiss();
-    }, (reason) => {
-    });
+    this.modalService.openModalDialog(ReminderCreateComponent, reminder, this.get());
   }
 
   get() {

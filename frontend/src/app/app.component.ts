@@ -10,14 +10,7 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   isUserLoggedIn: boolean;
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private authService: AuthService) {
     this.authService.currentUser.subscribe((userClain: UserClaims) => this.isUserLoggedIn = !!userClain);
   }
-
-  logoff() {
-    localStorage.removeItem('currentUser');
-    this.authService.currentUserSubject.next(null);
-    this.router.navigate(['/login']);
-  }
-
 }

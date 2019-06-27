@@ -14,7 +14,7 @@ export class ReminderCreateComponent implements OnInit {
     submitted: boolean = false;
     reminderForm: FormGroup;
 
-    @Input() reminder: Reminder;
+    @Input() data: Reminder;
 
     constructor(private formBuilder: FormBuilder, private reminderService: ReminderService, public activeModal: NgbActiveModal) { }
 
@@ -26,7 +26,7 @@ export class ReminderCreateComponent implements OnInit {
         });
         this.setDefault();
         this.reminderForm.valueChanges.subscribe(reminder => {
-            this.reminder = { ...this.reminder, ...reminder };
+            this.data = { ...this.data, ...reminder };
         });
     }
 
@@ -35,14 +35,14 @@ export class ReminderCreateComponent implements OnInit {
         if (this.reminderForm.invalid) {
             return;
         }
-        this.reminderService.save(this.reminder).subscribe(() => {
+        this.reminderService.save(this.data).subscribe(() => {
             this.activeModal.close('saved');
         }, (error: any) => { this.message = error.error; });
     }
 
     private setDefault(): void {
-        if (this.reminder) {
-            const { name, description, type } = this.reminder;
+        if (this.data) {
+            const { name, description, type } = this.data;
             this.reminderForm.setValue({ name, description, type });
         }
     }

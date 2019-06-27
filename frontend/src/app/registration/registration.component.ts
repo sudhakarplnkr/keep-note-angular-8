@@ -3,6 +3,7 @@ import { User } from './User';
 import { RegistrationService } from './registration.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-registration',
@@ -29,7 +30,9 @@ export class RegistrationComponent implements OnInit {
   constructor(
     private registrationService: RegistrationService,
     private router: Router,
-    private formBuilder: FormBuilder) {    
+    private formBuilder: FormBuilder,
+    private title: Title) {    
+      this.title.setTitle('Keep Notes - Registration');
   }
 
   createUser() {
