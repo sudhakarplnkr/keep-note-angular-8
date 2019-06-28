@@ -13,7 +13,7 @@ import { Title } from '@angular/platform-browser';
 export class NotesComponent implements OnInit {
   notes: Note[];
   constructor(
-    private modalService: ModalService,
+    private modalService: ModalService<NotesCreateComponent, Note>,
     private noteService: NoteService,
     private title: Title) {
     this.title.setTitle('Keep Note - Notes');

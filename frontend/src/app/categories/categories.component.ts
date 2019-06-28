@@ -15,7 +15,7 @@ export class CategoriesComponent implements OnInit {
   categories: Category[];
   constructor(
     private categoryService: CategoryService,
-    private modalService: ModalService,
+    private modalService: ModalService<CategoryCreateComponent, Category>,
     private title: Title) {
     this.title.setTitle('Keep Note - Category');
   }

@@ -14,7 +14,7 @@ export class RemindersComponent implements OnInit {
 
   reminders: Reminder[];
   constructor(
-    public modalService: ModalService,
+    public modalService: ModalService<ReminderCreateComponent, Reminder>,
     private reminderService: ReminderService,
     private title: Title) {
     this.title.setTitle('Keep Note - Reminder');

@@ -4,7 +4,6 @@ import { Reminder } from './reminder';
 import { Observable } from 'rxjs';
 import { ServiceUrl } from '../environment';
 import { AuthService } from '../services/auth.service';
-import { Category } from '../categories/category';
 import { map } from 'rxjs/operators';
 
 @Injectable({
