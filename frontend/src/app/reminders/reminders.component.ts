@@ -25,7 +25,7 @@ export class RemindersComponent implements OnInit {
   }
 
   create(reminder?: Reminder) {
-    this.modalService.openModalDialog(ReminderCreateComponent, reminder, this.get());
+    this.modalService.openModalDialog(ReminderCreateComponent, reminder, () => this.get());
   }
 
   get() {

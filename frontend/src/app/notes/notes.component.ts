@@ -24,7 +24,7 @@ export class NotesComponent implements OnInit {
   }
 
   create(note?: Note) {
-    this.modalService.openModalDialog(NotesCreateComponent, note, this.get());
+    this.modalService.openModalDialog(NotesCreateComponent, note, () => this.get());
   }
 
   get() {

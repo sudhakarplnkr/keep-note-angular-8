@@ -25,7 +25,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   create(category?: Category) {
-    this.modalService.openModalDialog(CategoryCreateComponent, category, this.get());
+    this.modalService.openModalDialog(CategoryCreateComponent, category, () => this.get());
   }
 
   get() {

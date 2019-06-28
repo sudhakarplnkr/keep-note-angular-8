@@ -13,10 +13,10 @@ export class RegistrationService {
   }
 
   createUser(user: User): Observable<User> {
-    return this.http.post<any>(ServiceUrl.AuthenticationUrl, user);
+    return this.http.post<any>(`${ServiceUrl.AuthenticationUrl}/register`, user);
   }
 
   createUserDetail(user: User): Observable<User>{
-    return this.http.post<any>(`${ServiceUrl.UserUrl}/registration`, user);
+    return this.http.post<any>(`${ServiceUrl.UserUrl}`, user);
   }
 }
