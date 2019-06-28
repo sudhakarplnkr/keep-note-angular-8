@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
+using CoreService;
 
 namespace AuthenticationService
 {
@@ -41,6 +42,7 @@ namespace AuthenticationService
                     Description = "Authentication Service",
                     TermsOfService = "None"
                 });
+                c.OperationFilter<AddRequiredHeaderParameter>();
             });
         }
 

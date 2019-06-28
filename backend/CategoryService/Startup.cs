@@ -1,6 +1,7 @@
 ﻿using CategoryService.Models;
 using CategoryService.Repository;
 using CategoryService.Service;
+using CoreService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,6 +44,7 @@ namespace CategoryService
                     Version = "v1",
                     TermsOfService = "None"
                 });
+                c.OperationFilter<AddRequiredHeaderParameter>();
             });
         }
 

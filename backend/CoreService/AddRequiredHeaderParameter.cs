@@ -1,4 +1,4 @@
-﻿namespace NoteService
+﻿namespace CoreService
 {
     using System.Collections.Generic;
     using Swashbuckle.AspNetCore.Swagger;

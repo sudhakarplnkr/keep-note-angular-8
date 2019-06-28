@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using CoreService;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -33,14 +34,16 @@ namespace ReminderService
             services.AddScoped<IReminderService, Service.ReminderService>();
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSwaggerGen(c => {
+            services.AddSwaggerGen(c =>
+            {
                 c.SwaggerDoc("v1", new Info
                 {
                     Title = "Reminder Service",
-                     Description= "Reminder Service",
+                    Description = "Reminder Service",
                     TermsOfService = "None",
-                    Version="v1"
+                    Version = "v1"
                 });
+                c.OperationFilter<AddRequiredHeaderParameter>();
             });
         }
 
@@ -55,7 +58,8 @@ namespace ReminderService
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();
             app.UseSwagger();
-            app.UseSwaggerUI(c => {
+            app.UseSwaggerUI(c =>
+            {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Reminder Service");
             });
         }
