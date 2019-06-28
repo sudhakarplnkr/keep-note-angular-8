@@ -16,7 +16,7 @@ export class NotesComponent implements OnInit {
     private modalService: ModalService,
     private noteService: NoteService,
     private title: Title) {
-    this.title.setTitle('Keep Note - Reminder');
+    this.title.setTitle('Keep Note - Notes');
   }
 
   ngOnInit() {
@@ -28,15 +28,11 @@ export class NotesComponent implements OnInit {
   }
 
   get() {
-    this.noteService.get().subscribe((notes: Note[]) => {
-      this.notes = notes;
-    });
+    this.noteService.get().subscribe((notes: Note[]) => this.notes = notes);
   }
 
   delete(noteId: number) {
-    this.noteService.delete(noteId).subscribe(() => {
-      this.get();
-    });
+    this.noteService.delete(noteId).subscribe(() => this.get());
   }
 
 }

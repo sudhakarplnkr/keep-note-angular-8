@@ -4,6 +4,7 @@ import { Category } from './category';
 import { Observable } from 'rxjs';
 import { ServiceUrl } from '../environment';
 import { AuthService } from '../services/auth.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,9 @@ export class CategoryService {
   constructor(private http: HttpClient,
     private authService: AuthService) { }
 
-  get(): Observable<any> {
+  get(): Observable<Category[]> {
     const { userId } = this.authService.currentUserValue;    
-    return this.http.get(`${ServiceUrl.CategoryUrl}/categories/${userId}`);
+    return this.http.get(`${ServiceUrl.CategoryUrl}/categories/${userId}`).pipe(map((cat: Category[])=> cat));
   }
 
   save(category: Category): Observable<any> {

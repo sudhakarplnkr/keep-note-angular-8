@@ -29,9 +29,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   get() {
-    this.categoryService.get().subscribe((categories: Category[]) => {
-      this.categories = categories;
-    });
+    this.categoryService.get().subscribe((categories: Category[]) => this.categories = categories);
   }
 
   delete(categoryId: number) {
