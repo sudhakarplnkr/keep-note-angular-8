@@ -5,30 +5,35 @@ import { Observable } from 'rxjs';
 import { ServiceUrl } from '../environment';
 import { AuthService } from '../services/auth.service';
 import { map } from 'rxjs/operators';
+import { BaseService } from '../services/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReminderService {
+export class ReminderService extends BaseService {
 
   constructor(private http: HttpClient,
-    private authService: AuthService) { }
+    authService: AuthService) {
+    super(authService);
+  }
 
   get(): Observable<Reminder[]> {
-    const { userId } = this.authService.currentUserValue;
-    return this.http.get(`${ServiceUrl.ReminderUrl}/reminders/${userId}`).pipe(map((rem: Reminder[]) => rem));
+    return this.http.get(`${ServiceUrl.ReminderUrl}/reminders/${this.userId}`)
+      .pipe(map((rem: Reminder[]) => rem));
   }
 
-  save(reminder: Reminder): Observable<any> {
+  save(reminder: Reminder): Observable<never> {
     if (reminder.id) {
-      return this.http.put(`${ServiceUrl.ReminderUrl}/reminder/${reminder.id}`, reminder);
+      return this.http.put(`${ServiceUrl.ReminderUrl}/reminder/${reminder.id}`, reminder)
+        .pipe(map((never: never) => never));
     }
-    const { userId } = this.authService.currentUserValue;
-    reminder.createdBy = userId;
-    return this.http.post(`${ServiceUrl.ReminderUrl}/reminder`, reminder);
+    reminder.createdBy = this.userId;
+    return this.http.post(`${ServiceUrl.ReminderUrl}/reminder`, reminder)
+      .pipe(map((never: never) => never));
   }
 
-  delete(reminderId: number): Observable<any> {
-    return this.http.delete(`${ServiceUrl.ReminderUrl}/reminder/${reminderId}`);
+  delete(reminderId: number): Observable<never> {
+    return this.http.delete(`${ServiceUrl.ReminderUrl}/reminder/${reminderId}`)
+      .pipe(map((never: never) => never));
   }
 }

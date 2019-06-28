@@ -5,31 +5,35 @@ import { Observable } from 'rxjs';
 import { ServiceUrl } from '../environment';
 import { AuthService } from '../services/auth.service';
 import { map } from 'rxjs/operators';
+import { BaseService } from '../services/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class NoteService {
+export class NoteService extends BaseService {
   constructor(private http: HttpClient,
-    private authService: AuthService) { }
+    authService: AuthService) {
+    super(authService);
+  }
 
   get(): Observable<Note[]> {
-    const { userId } = this.authService.currentUserValue;
-    return this.http.get(`${ServiceUrl.NoteUrl}/notes/${userId}`).pipe(map((notes: Note[]) => notes));
+    return this.http.get(`${ServiceUrl.NoteUrl}/notes/${this.userId}`)
+      .pipe(map((notes: Note[]) => notes));
   }
 
-  save(note: Note): Observable<any> {
-    const { userId } = this.authService.currentUserValue;
+  save(note: Note): Observable<never> {
     if (note.id) {
-      return this.http.put(`${ServiceUrl.NoteUrl}/notes/${userId}/${note.id}`, note);
+      return this.http.put(`${ServiceUrl.NoteUrl}/notes/${this.userId}/${note.id}`, note)
+        .pipe(map((never: never) => never));
     }
-    note.createdBy = userId;
-    return this.http.post(`${ServiceUrl.NoteUrl}/notes/${userId}`, note);
+    note.createdBy = this.userId;
+    return this.http.post(`${ServiceUrl.NoteUrl}/notes/${this.userId}`, note)
+      .pipe(map((never: never) => never));
   }
 
-  delete(noteId: number): Observable<any> {
-    const { userId } = this.authService.currentUserValue;
-    return this.http.delete(`${ServiceUrl.NoteUrl}/notes/${userId}/${noteId}`);
+  delete(noteId: number): Observable<never> {
+    return this.http.delete(`${ServiceUrl.NoteUrl}/notes/${this.userId}/${noteId}`)
+      .pipe(map((never: never) => never));
   }
 }

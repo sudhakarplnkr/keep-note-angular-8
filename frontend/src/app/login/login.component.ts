@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Login } from '../registration/User';
+import { Login, UserClaims } from '../registration/User';
 import { AuthService } from '../services/auth.service';
 import { Title } from '@angular/platform-browser';
 
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    this.loginService.login(this.login).subscribe(claim => {
+    this.loginService.login(this.login).subscribe((claim: UserClaims) => {
       if (claim && claim.token) {
         localStorage.setItem('currentUser', JSON.stringify(claim));
         this.authService.currentUserSubject.next(claim);
