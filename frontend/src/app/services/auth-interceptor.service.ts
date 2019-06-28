@@ -4,11 +4,12 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { UserClaims } from '../registration/User';
 import { AuthService } from './auth.service';
+import { SpinnerService } from '../shared/spinner/spinner.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     requestCount = 0;
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService, private spinnerService: SpinnerService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let currentUser: UserClaims;
@@ -34,11 +35,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
     private incrementRequest(): void {
         this.requestCount++;
-        this.authService.showSpinnerSubject.next(this.requestCount);
+        this.spinnerService.showSpinnerSubject.next(this.requestCount);
     }
 
     private decrementRequest(): void {
         this.requestCount--;
-        this.authService.showSpinnerSubject.next(this.requestCount);
+        this.spinnerService.showSpinnerSubject.next(this.requestCount);
     }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
 
 @Component({
   selector: 'app-spinner',
@@ -8,11 +9,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SpinnerComponent implements OnInit {
   isLoading = false;
-  constructor(private authService: AuthService) {
+  constructor(private spinnerService: SpinnerService) {
   }
 
   ngOnInit() {
-    this.authService.showSpinnerSubject.subscribe((requestCount: number) => {
+    this.spinnerService.showSpinnerSubject.subscribe((requestCount: number) => {
       setTimeout(() => {
         this.isLoading = requestCount > 0;
       });

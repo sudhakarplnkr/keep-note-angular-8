@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RemindersComponent } from './reminders.component';
 import { ReminderCreateComponent } from './reminder-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ReminderService } from './reminder.service';
-import { AuthService } from '../services/auth.service';
 
 @NgModule({
   declarations: [
@@ -17,10 +15,6 @@ import { AuthService } from '../services/auth.service';
   ],
   entryComponents: [
     ReminderCreateComponent
-  ],
-  providers: [
-    ReminderService,
-    AuthService
   ]
 })
 export class RemindersModule { }

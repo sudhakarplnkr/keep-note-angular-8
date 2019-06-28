@@ -13,7 +13,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { NotesModule } from './notes/notes.module';
 import { RemindersModule } from './reminders/reminders.module';
 import { AuthInterceptor } from './services/auth-interceptor.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -35,7 +35,8 @@ import { ToastrModule } from 'ngx-toastr';
     RemindersModule,
     BrowserAnimationsModule,
     NgbModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    HttpClientModule
   ],
   providers: [
     NgbActiveModal,
