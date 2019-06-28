@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NoteService.Models;
 using NoteService.Repository;
 using NoteService.Service;
+using Swashbuckle.AspNetCore.Swagger;
+using System.Text;
 
 namespace NoteService
 {
@@ -38,6 +33,17 @@ namespace NoteService
             services.AddScoped<INoteService, Service.NoteService>();
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Description = "Note Service",
+                    Title = "Note Service",
+                    TermsOfService = "None",
+                    Version = "v1"
+                });
+                c.OperationFilter<AddRequiredHeaderParameter>();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +56,11 @@ namespace NoteService
             app.UseAuthentication();
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Note Service");
+            });
         }
 
         private void ValidationToken(IConfiguration configuration, IServiceCollection services)

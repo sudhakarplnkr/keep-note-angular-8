@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using ReminderService.Models;
 using ReminderService.Repository;
 using ReminderService.Service;
+using Swashbuckle.AspNetCore.Swagger;
 using System.Text;
 
 namespace ReminderService
@@ -32,6 +33,15 @@ namespace ReminderService
             services.AddScoped<IReminderService, Service.ReminderService>();
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "Reminder Service",
+                     Description= "Reminder Service",
+                    TermsOfService = "None",
+                    Version="v1"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +54,10 @@ namespace ReminderService
             app.UseAuthentication();
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Reminder Service");
+            });
         }
 
         private void ValidationToken(IConfiguration configuration, IServiceCollection services)

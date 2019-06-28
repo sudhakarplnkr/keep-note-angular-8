@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
+using Swashbuckle.AspNetCore.Swagger;
 using System.Text;
 
 namespace CategoryService
@@ -34,6 +34,16 @@ namespace CategoryService
             services.AddScoped<ICategoryService, Service.CategoryService>();
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Description = "Category Service",
+                    Title = "Category Service",
+                    Version = "v1",
+                    TermsOfService = "None"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +56,8 @@ namespace CategoryService
             app.UseAuthentication();
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Category Service"); });
         }
 
         private void ValidationToken(IConfiguration configuration, IServiceCollection services)
