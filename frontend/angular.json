@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "GoogleKeepUI": {
+    "keepnotes": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/GoogleKeepUI",
+            "outputPath": "dist/keepnotes",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "GoogleKeepUI:build"
+            "browserTarget": "keepnotes:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "GoogleKeepUI:build:production"
+              "browserTarget": "keepnotes:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "GoogleKeepUI:build"
+            "browserTarget": "keepnotes:build"
           }
         },
         "test": {
@@ -106,16 +106,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "GoogleKeepUI:serve"
+            "devServerTarget": "keepnotes:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "GoogleKeepUI:serve:production"
+              "devServerTarget": "keepnotes:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "GoogleKeepUI"
+  "defaultProject": "keepnotes"
 }

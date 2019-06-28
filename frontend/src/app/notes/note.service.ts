@@ -12,8 +12,7 @@ import { BaseService } from '../services/base.service';
 })
 
 export class NoteService extends BaseService {
-  constructor(private http: HttpClient,
-    authService: AuthService) {
+  constructor(private http: HttpClient, authService: AuthService) {
     super(authService);
   }
 

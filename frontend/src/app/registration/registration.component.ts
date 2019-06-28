@@ -14,7 +14,7 @@ export class RegistrationComponent implements OnInit {
 
   registrationForm: FormGroup;
   user: User;
-  submitted: boolean = false;
+  submitted = false;
   error: string;
 
   ngOnInit(): void {
@@ -31,8 +31,8 @@ export class RegistrationComponent implements OnInit {
     private registrationService: RegistrationService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private title: Title) {    
-      this.title.setTitle('Keep Notes - Registration');
+    private title: Title) {
+    this.title.setTitle('Keep Notes - Registration');
   }
 
   createUser() {

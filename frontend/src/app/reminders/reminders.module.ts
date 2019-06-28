@@ -18,7 +18,7 @@ import { AuthService } from '../services/auth.service';
   entryComponents: [
     ReminderCreateComponent
   ],
-  providers:[
+  providers: [
     ReminderService,
     AuthService
   ]

@@ -11,7 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ReminderCreateComponent implements OnInit {
 
     message: string;
-    submitted: boolean = false;
+    submitted = false;
     reminderForm: FormGroup;
 
     @Input() data: Reminder;

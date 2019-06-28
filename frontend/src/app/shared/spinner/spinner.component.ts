@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./spinner.component.css']
 })
 export class SpinnerComponent implements OnInit {
-  isLoading: boolean = false;
+  isLoading = false;
   constructor(private authService: AuthService) {
   }
 

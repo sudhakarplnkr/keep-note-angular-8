@@ -19,7 +19,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
   entryComponents: [
     NotesCreateComponent
   ],
-  providers:[
+  providers: [
     NoteService
   ]
 })

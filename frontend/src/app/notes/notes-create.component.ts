@@ -15,7 +15,7 @@ import { ReminderService } from '../reminders/reminder.service';
 })
 export class NotesCreateComponent implements OnInit {
     message: string;
-    submitted: boolean = false;
+    submitted = false;
     noteForm: FormGroup;
     categories: Category[];
     reminders: Reminder[];

@@ -1,4 +1,4 @@
-import { Injectable, Type } from "@angular/core";
+import { Injectable, Type } from '@angular/core';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
@@ -16,7 +16,7 @@ export class ModalService<C, T> {
     public openModalDialog(component: Type<C>, data: T, successCallback: (result: string) => void) {
         const modal = this.modalService.open(component);
         modal.componentInstance.data = data;
-        modal.result.then((result) => {
+        modal.result.then((result: string) => {
             if (result === 'saved') {
                 this.toastrService.success('Saved successfully.');
                 successCallback(result);

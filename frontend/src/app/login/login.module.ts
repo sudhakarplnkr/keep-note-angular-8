@@ -13,7 +13,7 @@ import { AuthService } from '../services/auth.service';
     CommonModule,
     ReactiveFormsModule
   ],
-  providers:[
+  providers: [
     LoginService,
     AuthService
   ]

@@ -13,8 +13,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class LoginComponent implements OnInit {
 
-  submitted: boolean = false;
-  error: string = '';
+  submitted = false;
+  error = '';
   loginForm: FormGroup;
   login: Login;
   returnUrl: string;
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private authService: AuthService,
-    private router: Router,
+    public router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private title: Title) {
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       UserId: [null, Validators.required],
       Password: [null, Validators.required]
     });
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
 
     this.loginForm.valueChanges.subscribe((login: Login) => this.login = login);
   }

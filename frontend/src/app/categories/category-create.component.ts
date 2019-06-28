@@ -11,7 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class CategoryCreateComponent implements OnInit {
 
     message: string;
-    submitted: boolean = false;
+    submitted = false;
     categoryForm: FormGroup;
 
     @Input() data: Category;

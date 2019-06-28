@@ -18,6 +18,6 @@ export class RegistrationService {
 
   createUserDetail(user: User): Observable<never> {
     return this.http.post<any>(`${ServiceUrl.UserUrl}`, user)
-      .pipe(map((never: never) => never));;
+      .pipe(map((never: never) => never));
   }
 }

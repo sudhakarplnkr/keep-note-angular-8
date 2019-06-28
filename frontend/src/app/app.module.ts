@@ -34,12 +34,12 @@ import { ToastrModule } from 'ngx-toastr';
     NotesModule,
     RemindersModule,
     BrowserAnimationsModule,
-    NgbModule.forRoot(),
+    NgbModule,
     ToastrModule.forRoot()
   ],
   providers: [
     NgbActiveModal,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },    
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     AuthInterceptor,
     Title
   ],
