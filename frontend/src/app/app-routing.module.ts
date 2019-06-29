@@ -17,55 +17,34 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent,
-    data: {
-      title: 'Login Page'
-    }
+    loadChildren: () => import('./login/login.module').then(mod => mod.LoginModule)
   }, {
     path: 'registration',
-    component: RegistrationComponent,
-    data: {
-      title: 'Registration Page'
-    }
+    loadChildren: () => import('./registration/registration.module').then(mod => mod.RegistrationModule)
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
-    data: {
-      title: 'Dashboard Page'
-    },
+    loadChildren: () => import('./dashboard/dashboard.module').then(mod => mod.DashboardModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'categories',
-    component: CategoriesComponent,
-    data: {
-      title: 'Categories Page'
-    },
+    loadChildren: () => import('./categories/categories.module').then(mod => mod.CategoriesModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'notes',
-    component: NotesComponent,
-    data: {
-      title: 'Notes Page'
-    },
+    loadChildren: () => import('./notes/notes.module').then(mod => mod.NotesModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'reminders',
-    component: RemindersComponent,
-    data: {
-      title: 'Reminders Page'
-    },
+    loadChildren: () => import('./reminders/reminders.module').then(mod => mod.RemindersModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'logout',
-    component: LogoutComponent,
-    data: {
-      title: 'Logout Page'
-    }
+    loadChildren: () => import('./logout/logout.module').then(mod => mod.LogoutModule)
   }
 ];
 
