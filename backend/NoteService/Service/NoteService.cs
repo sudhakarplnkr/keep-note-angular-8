@@ -23,7 +23,7 @@ namespace NoteService.Service
         {
             var notes = noteRepository.CreateNote(note);
 
-            if (notes != null)
+            if (notes)
             {
                 return notes;
             }
