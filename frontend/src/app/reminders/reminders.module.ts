@@ -11,16 +11,12 @@ const routers: Routes = [
 
 @NgModule({
   declarations: [
-    RemindersComponent,
-    ReminderCreateComponent
+    RemindersComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(routers)
-  ],
-  entryComponents: [
-    ReminderCreateComponent
   ]
 })
 export class RemindersModule { }

@@ -12,17 +12,12 @@ const routers: Routes = [
 
 @NgModule({
   declarations: [
-    NotesComponent,
-    NotesCreateComponent
+    NotesComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routers),
-    NgMultiSelectDropDownModule.forRoot()
-  ],
-  entryComponents: [
-    NotesCreateComponent
-  ]
+    RouterModule.forChild(routers)
+  ]  
 })
 export class NotesModule { }

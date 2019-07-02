@@ -10,11 +10,19 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CategoryCreateComponent } from './categories/category-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ReminderCreateComponent } from './reminders/reminder-create.component';
+import { NotesCreateComponent } from './notes/notes-create.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    CategoryCreateComponent,
+    ReminderCreateComponent,
+    NotesCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +30,9 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     NgbModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     NgbActiveModal,
@@ -31,6 +41,10 @@ import { ToastrModule } from 'ngx-toastr';
     Title
   ],
   bootstrap: [AppComponent],
-  entryComponents: []
+  entryComponents: [
+    CategoryCreateComponent,
+    ReminderCreateComponent,
+    NotesCreateComponent
+  ]
 })
 export class AppModule { }
