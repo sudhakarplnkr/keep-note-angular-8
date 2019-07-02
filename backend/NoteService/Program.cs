@@ -19,7 +19,7 @@ namespace NoteService
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .UseUrls("http://localhost:5004")
+            .UseUrls("http://localhost:5000")
                 .UseStartup<Startup>();
     }
 }
