@@ -12,8 +12,8 @@ namespace NoteService.Controllers
         private IHubContext<ChartHub> _hub;
 
         public ChartController(IHubContext<ChartHub> hub)
-        {
-            _hub = hub;
+        {             
+            _hub = hub;            
         }
 
         [Route("api/chart")]

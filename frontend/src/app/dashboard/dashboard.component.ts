@@ -42,10 +42,10 @@ export class DashboardComponent implements OnInit {
   }
 
   private startHttpRequest = () => {
-    this.http.get('http://localhost:60967/api/chart')
+    this.http.get('http://localhost:5000/api/chart')
       .subscribe(res => {
         console.log(res);
-      })
+      });
   }
 
   public chartClicked = (event: any) => {

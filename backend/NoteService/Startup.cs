@@ -33,7 +33,15 @@ namespace NoteService
             services.AddScoped<NoteContext>();
             services.AddScoped<INoteRepository, NoteRepository>();
             services.AddScoped<INoteService, Service.NoteService>();
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.WithOrigins("http://localhost:4200")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
             services.AddSignalR();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c =>
@@ -56,13 +64,13 @@ namespace NoteService
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseAuthentication();
-            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors("CorsPolicy");
+            app.UseAuthentication();            
             app.UseSignalR(routes =>
             {
                 routes.MapHub<ChartHub>("/chart");
             });
-            app.UseMvc();
+            app.UseMvc();            
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
