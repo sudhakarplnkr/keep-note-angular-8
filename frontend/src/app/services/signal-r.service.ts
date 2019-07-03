@@ -19,7 +19,7 @@ export class SignalRService {
     this.hubConnection
       .start()
       .then(() => console.log('Connection started'))
-      .catch(err => console.log('Error while starting connection: ' + err))
+      .catch(err => console.log('Error while starting connection: ' + err));
   }
 
   public addTransferChartDataListener = () => {
@@ -37,6 +37,6 @@ export class SignalRService {
   public addBroadcastChartDataListener = () => {
     this.hubConnection.on('broadcastchartdata', (data) => {
       this.bradcastedData = data;
-    })
+    });
   }
 }
