@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using NoteService.HubConfig;
 using NoteService.Models;
 using NoteService.Repository;
 using NoteService.Service;
@@ -33,6 +34,7 @@ namespace NoteService
             services.AddScoped<INoteRepository, NoteRepository>();
             services.AddScoped<INoteService, Service.NoteService>();
             services.AddCors();
+            services.AddSignalR();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c =>
             {
@@ -56,6 +58,10 @@ namespace NoteService
             }
             app.UseAuthentication();
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChartHub>("/chart");
+            });
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
