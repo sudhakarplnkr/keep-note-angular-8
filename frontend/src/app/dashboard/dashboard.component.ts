@@ -37,7 +37,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.signalRService.startConnection();
     this.signalRService.addTransferChartDataListener();
-    this.signalRService.addBroadcastChartDataListener();
     this.startHttpRequest();
   }
 
@@ -47,10 +46,4 @@ export class DashboardComponent implements OnInit {
         console.log(res);
       });
   }
-
-  public chartClicked = (event: any) => {
-    console.log(event);
-    this.signalRService.broadcastChartData();
-  }
-
 }

@@ -33,8 +33,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   delete(categoryId: number) {
-    this.categoryService.delete(categoryId).subscribe(() => {
-      this.get();
-    });
+    this.categoryService.delete(categoryId).subscribe(() => this.get());
   }
 }

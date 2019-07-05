@@ -28,15 +28,4 @@ export class SignalRService {
       console.log(data);
     });
   }
-
-  public broadcastChartData = () => {
-    this.hubConnection.invoke('broadcastchartdata', this.data)
-      .catch(err => console.error(err));
-  }
-
-  public addBroadcastChartDataListener = () => {
-    this.hubConnection.on('broadcastchartdata', (data) => {
-      this.bradcastedData = data;
-    });
-  }
 }
