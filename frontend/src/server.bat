@@ -1,0 +1,5 @@
+start dotnet run --project "D:\Sudhakar\Projects\keep-note-angular-8\backend\AuthenticationService"
+start dotnet run --project "D:\Sudhakar\Projects\keep-note-angular-8\backend\UserService"
+start dotnet run --project "D:\Sudhakar\Projects\keep-note-angular-8\backend\CategoryService"
+start dotnet run --project "D:\Sudhakar\Projects\keep-note-angular-8\backend\ReminderService"
+start dotnet run --project "D:\Sudhakar\Projects\keep-note-angular-8\backend\NoteService"

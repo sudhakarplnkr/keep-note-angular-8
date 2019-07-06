@@ -14,6 +14,7 @@ describe('LoginComponent', () => {
   let routerSpy;
   let routeSpy;
   let authServiceSpy;
+  let loginServiceSpy;
 
   beforeEach(async(() => {
     routerSpy = jasmine.createSpyObj('Router', {
@@ -21,13 +22,19 @@ describe('LoginComponent', () => {
     });
     routeSpy = jasmine.createSpyObj('Route', ['snapshot']);
     routeSpy.snapshot = { queryParams: { returnUrl: of() } };
-
+    authServiceSpy = jasmine.createSpyObj('AuthService', {
+      currentUserValue: of(),
+      currentUserSubject: of()
+    });
+    loginServiceSpy = jasmine.createSpyObj('LoginService', {
+      login: of({ token: 'test', userId: 'test@test.com' })
+    });
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
       imports: [ReactiveFormsModule],
       providers: [
-        LoginService,
-        AuthService,
+        { provide: LoginService, useValue: loginServiceSpy },
+        { provide: AuthService, useValue: authServiceSpy },
         { provide: Router, useValue: routerSpy },
         { provide: ActivatedRoute, useValue: routeSpy },
         FormBuilder,
