@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { SpinnerComponent } from './core/spinner/spinner.component';
 import { AuthService } from './services/auth.service';
 import { of } from 'rxjs';
 

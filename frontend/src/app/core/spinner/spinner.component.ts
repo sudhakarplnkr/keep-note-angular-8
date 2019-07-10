@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { SpinnerService } from 'src/app/shared/spinner/spinner.service';
+import { SpinnerService } from 'src/app/core/spinner/spinner.service';
 
 @Component({
   selector: 'app-spinner',

@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { SpinnerComponent } from './core/spinner/spinner.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CategoryCreateComponent } from './categories/category-create.component';
@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ReminderCreateComponent } from './reminders/reminder-create.component';
 import { NotesCreateComponent } from './notes/notes-create.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     SpinnerComponent,
     CategoryCreateComponent,
     ReminderCreateComponent,
-    NotesCreateComponent
+    NotesCreateComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

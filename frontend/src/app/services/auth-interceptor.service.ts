@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { UserClaims } from '../registration/User';
 import { AuthService } from './auth.service';
-import { SpinnerService } from '../shared/spinner/spinner.service';
+import { SpinnerService } from '../core/spinner/spinner.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
