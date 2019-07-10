@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+    NoteServiceAPI:
+        image: note
+        ports:
+            - "5004:80"
+        depends_on:
+            - db
+        environment:
+            Mongo_DB:  "mongodb://db:27017"
+
+    CategoryServiceAPI:
+        image: category
+        ports:
+            - "5002:80"
+        depends_on:
+            - db
+        environment:
+            Mongo_DB:  "mongodb://db:27017"
+
+    ReminderServiceAPI:
+        image: reminder
+        ports:
+        - "5003:80"
+        depends_on:
+        - db
+        environment:
+            Mongo_DB:  "mongodb://db:27017"
+
+    UserServiceAPI:
+        image: user
+        ports:
+            - "5001:80"
+        depends_on:
+            - db
+        environment:
+            Mongo_DB:  "mongodb://db:27017"
+
+    AuthendicationService:
+        image: auth
+        ports:
+            - "5000:80"
+        depends_on:
+            - sqldb  
+        environment:
+            Sql_DB: "Server=sqldb;Initial Catalog=AuthDb;Persist Security Info=True;User ID=sa;Password=pass@123;"    
+
+    sqldb:
+        image: "mcr.microsoft.com/mssql/server"
+        environment:
+            SA_PASSWORD: "pass@123"
+            ACCEPT_EULA: "Y"
+        ports:
+        - "1433:1433" 
+
+    db:
+        image: "mongo"
+        ports:
+            - "27017:27017"
+
+    keep:
+        image: keep
+        ports: 
+            - "4200:80"
