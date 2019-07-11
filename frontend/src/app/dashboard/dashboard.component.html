@@ -1,17 +1,19 @@
-<div class="container  col-4 p-5">
+<div class="col-12 col-md-6 col-lg-4 float-left mb-2" *ngFor='let product of products'>
   <div class="card">
-    <div class="card-header">Google Keep Dashboard</div>
+    <img class="card-img-top" src="{{product.image}}" alt="Card image cap">
     <div class="card-body">
-      <div *ngIf='signalRService.data'>
-        <canvas baseChart [datasets]="signalRService.data" [labels]="chartLabels" [options]="chartOptions"
-          [legend]="chartLegend" [chartType]="chartType" [colors]="colors"></canvas>
+      <h4 class="card-title"><a href="product.html" title="View Product">{{product.title}}</a></h4>
+      <p class="card-text">{{product.description}}</p>
+      <div class="row">
+        <div class="col">
+          <p class="btn btn-danger btn-block">               
+            {{product.price | currency: '₹ '}}
+          </p>
+        </div>
+        <div class="col text-right">
+            <span class="fa fa-cart-plus fa-2x"></span>
+        </div>
       </div>
-      <br><br>
-      <ul>
-        <li *ngFor='let data of signalRService.bradcastedData'>          
-          <strong>Label: </strong> {{data.label}} - <strong>Value: </strong> {{data.data[0]}}
-        </li>
-      </ul>
     </div>
   </div>
 </div>

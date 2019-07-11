@@ -17,6 +17,7 @@ import { NotesCreateComponent } from './notes/notes-create.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
+import { SidebarComponent } from './core/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FooterComponent } from './core/footer/footer.component';
     ReminderCreateComponent,
     NotesCreateComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

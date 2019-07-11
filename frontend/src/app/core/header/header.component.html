@@ -1,7 +1,26 @@
-<div class="topnav" *ngIf="isUserLoggedIn">
-  <a [routerLink]="['/dashboard']" [routerLinkActive]="'active'">Home</a>
-  <a [routerLink]="['./categories']" [routerLinkActive]="'active'">Category</a>
-  <a [routerLink]="['./reminders']" [routerLinkActive]="'active'">Reminder</a>
-  <a [routerLink]="['./notes']" [routerLinkActive]="'active'">Note</a>
-  <a [routerLink]="['./logout']" [routerLinkActive]="'active'">Logout</a>
+<div class="container">
+  <div class="topnav" *ngIf="isUserLoggedIn">
+    <a [routerLink]="['/dashboard']" [routerLinkActive]="'active'">Home</a>
+    <a [routerLink]="['./categories']" [routerLinkActive]="'active'">Category</a>
+    <a [routerLink]="['./reminders']" [routerLinkActive]="'active'">Reminder</a>
+    <a [routerLink]="['./notes']" [routerLinkActive]="'active'">Note</a>
+    <a [routerLink]="['./logout']" [routerLinkActive]="'active'">Logout</a>
+    <div class="search-container">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </div>
+  </div>
+</div>
+<div class="container mt-2">
+  <div class="row">
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="category.html">Category</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Sub-category</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
 </div>
