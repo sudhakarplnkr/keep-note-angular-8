@@ -1,0 +1,19 @@
+<div class="col-12 col-md-6 col-lg-4 float-left mb-2" *ngFor='let product of products'>
+    <div class="card">
+      <img class="card-img-top" src="{{product.image}}" alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title"><a href="product.html" title="View Product">{{product.title}}</a></h4>
+        <p class="card-text">{{product.description}}</p>
+        <div class="row">
+          <div class="col">
+            <p class="fa-lg">               
+              {{product.price | currency: '₹ '}}
+            </p>
+          </div>
+          <div class="col text-right">
+              <span class="fa fa-cart-plus fa-2x"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
