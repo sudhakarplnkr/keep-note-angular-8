@@ -5,10 +5,7 @@
     <a [routerLink]="['./reminders']" [routerLinkActive]="'active'">Reminder</a>
     <a [routerLink]="['./notes']" [routerLinkActive]="'active'">Note</a>
     <a [routerLink]="['./logout']" [routerLinkActive]="'active'">Logout</a>
-    <div class="search-container">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </div>
+    <app-search></app-search>
   </div>
 </div>
 <div class="container mt-2">

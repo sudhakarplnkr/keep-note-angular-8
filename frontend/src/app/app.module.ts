@@ -11,13 +11,14 @@ import { SpinnerComponent } from './core/spinner/spinner.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CategoryCreateComponent } from './categories/category-create.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ReminderCreateComponent } from './reminders/reminder-create.component';
 import { NotesCreateComponent } from './notes/notes-create.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { SidebarComponent } from './core/sidebar/sidebar.component';
+import { SearchComponent } from './core/search/search.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SidebarComponent } from './core/sidebar/sidebar.component';
     NotesCreateComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,7 @@ import { SidebarComponent } from './core/sidebar/sidebar.component';
     ToastrModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
@@ -51,6 +54,9 @@ import { SidebarComponent } from './core/sidebar/sidebar.component';
     CategoryCreateComponent,
     ReminderCreateComponent,
     NotesCreateComponent
+  ],
+  exports: [
+    SearchComponent,
   ]
 })
 export class AppModule { }
