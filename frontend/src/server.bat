@@ -1,5 +1,0 @@
-start dotnet run --project "..\..\backend\AuthenticationService"
-start dotnet run --project "..\..\backend\UserService"
-start dotnet run --project "..\..\backend\CategoryService"
-start dotnet run --project "..\..\backend\ReminderService"
-start dotnet run --project "..\..\backend\NoteService"

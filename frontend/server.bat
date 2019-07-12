@@ -1,0 +1,5 @@
+start dotnet run -p "..\backend\AuthenticationService"
+start dotnet run -p "..\backend\UserService"
+start dotnet run -p "..\backend\CategoryService"
+start dotnet run -p "..\backend\ReminderService"
+start dotnet run -p "..\backend\NoteService"
